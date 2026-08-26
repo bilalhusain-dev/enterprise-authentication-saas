@@ -514,11 +514,13 @@ export default function EnterpriseAuthApp() {
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsCommandPaletteOpen(true)}
-              className="hidden md:flex items-center gap-2 px-3 py-1.5 text-xs text-slate-500 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg transition-colors"
+              className="hidden md:flex items-center justify-between w-56 px-3 py-1.5 text-xs bg-slate-100/80 hover:bg-slate-100 border border-slate-200 rounded-xl transition-all shadow-2xs group"
             >
-              <Search className="w-3.5 h-3.5 text-slate-400" />
-              <span>Search or jump to...</span>
-              <kbd className="px-1.5 py-0.2 text-[9px] font-mono font-bold bg-white border border-slate-200 rounded text-slate-400 shadow-2xs">
+              <div className="flex items-center gap-2">
+                <Search className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 transition-colors" />
+                <span className="text-xs font-medium text-slate-500">Search...</span>
+              </div>
+              <kbd className="px-1.5 py-0.5 text-[10px] font-semibold bg-white border border-slate-200 rounded-md text-slate-400 shadow-2xs leading-none">
                 ⌘K
               </kbd>
             </button>
