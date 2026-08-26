@@ -1,0 +1,27 @@
+# ZERO-TOKEN CONTEXT & ARCHITECTURAL RULES
+# Project: Enterprise Authentication SaaS (EA SaaS)
+
+[IDENTITY & VOCABULARY]
+- Official Full Title: Enterprise Authentication SaaS
+- Permitted Short Title: EA SaaS
+- Never use alternative product names or generic placeholders.
+
+[ZERO-TOKEN DIRECTORY BOUNDARIES]
+1. UI Components:
+   - Reusable primitives live strictly in `src/components/ui/`
+   - Feature-specific UI lives strictly in `src/features/<module>/components/`
+   - Never write raw business logic or DB calls inside `.tsx` files.
+
+2. Server Services & Actions:
+   - Server Actions and services live in `src/features/<module>/server/`
+   - All server operations must accept and return Zod-validated schemas defined in `src/features/<module>/types/`
+
+3. Multi-Tenant Scoping:
+   - Every database query must explicitly filter by `organization_id` or `tenant_id`.
+   - Never query user records across tenant boundaries without permission validation.
+
+4. Audit Logging Rule:
+   - Every state-mutating operation (login, role update, 2FA toggle, session revoke) MUST call `logAuditEvent()`.
+
+5. Documentation Sync:
+   - When introducing new routes or server actions, immediately update `docs/06_CODING_HANDOVER.md`.

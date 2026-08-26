@@ -1,0 +1,212 @@
+// ============================================================================
+// ENTERPRISE AUTHENTICATION SAAS (EA SAAS) - PRODUCTION PRISMA SCHEMA
+// ============================================================================
+// Multi-tenant PostgreSQL architecture with SCIM 2.0, Zero-Trust Sessions,
+// FIDO2 Passkeys, RBAC permissions, and immutable audit log streams.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  owner
+  admin
+  member
+  viewer
+  custom
+}
+
+enum AuditSeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+enum AppApprovalStatus {
+  APPROVED
+  UNAPPROVED
+  RESTRICTED
+}
+
+enum ApiKeyEnvironment {
+  Production
+  Staging
+  Development
+}
+
+model Organization {
+  id                  String               @id @default(cuid())
+  name                String
+  slug                String               @unique
+  logoUrl             String?
+  plan                String               @default("Enterprise")
+  enforce2FA          Boolean              @default(true)
+  sessionTimeoutHours Int                  @default(72)
+  allowedDomains      String[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  members             OrganizationMember[]
+  sessions            UserSession[]
+  apiKeys             ApiKey[]
+  webhooks            WebhookEndpoint[]
+  saasApps            SaaSApp[]
+  auditLogs           AuditLog[]
+
+  @@index([slug])
+}
+
+model User {
+  id               String               @id @default(cuid())
+  email            String               @unique
+  fullName         String
+  avatarUrl        String?
+  passwordHash     String?
+  isEmailVerified  Boolean              @default(false)
+  twoFactorEnabled Boolean              @default(false)
+  totpSecret       String?
+  backupCodes      String[]
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+
+  memberships      OrganizationMember[]
+  sessions         UserSession[]
+  passkeys         PasskeyCredential[]
+
+  @@index([email])
+}
+
+model OrganizationMember {
+  id                  String       @id @default(cuid())
+  organizationId      String
+  userId              String
+  role                UserRole     @default(member)
+  customRoleName      String?
+  permissionsOverride Json?
+  joinedAt            DateTime     @default(now())
+
+  organization        Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user                User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@index([organizationId])
+  @@index([userId])
+}
+
+model UserSession {
+  id             String       @id @default(cuid())
+  userId         String
+  organizationId String
+  tokenHash      String       @unique
+  browser        String
+  os             String
+  ipAddress      String
+  city           String
+  country        String
+  isCurrent      Boolean      @default(false)
+  isRevoked      Boolean      @default(false)
+  lastActiveAt   DateTime     @default(now())
+  expiresAt      DateTime
+  createdAt      DateTime     @default(now())
+
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([organizationId])
+  @@index([tokenHash])
+}
+
+model PasskeyCredential {
+  id           String   @id @default(cuid())
+  userId       String
+  name         String
+  credentialId String   @unique
+  publicKey    String
+  counter      Int      @default(0)
+  deviceType   String
+  aaguid       String?
+  createdAt    DateTime @default(now())
+  lastUsedAt   DateTime @default(now())
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([credentialId])
+}
+
+model ApiKey {
+  id             String            @id @default(cuid())
+  organizationId String
+  name           String
+  keyHash        String            @unique
+  prefix         String
+  env            ApiKeyEnvironment @default(Production)
+  scopes         String[]
+  lastUsedAt     DateTime?
+  expiresAt      DateTime?
+  createdAt      DateTime          @default(now())
+
+  organization   Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([keyHash])
+}
+
+model WebhookEndpoint {
+  id             String       @id @default(cuid())
+  organizationId String
+  url            String
+  secret         String
+  events         String[]
+  status         String       @default("HEALTHY")
+  lastDeliveryAt DateTime?
+  createdAt      DateTime     @default(now())
+
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+}
+
+model SaaSApp {
+  id             String            @id @default(cuid())
+  organizationId String
+  name           String
+  category       String
+  vendor         String
+  status         AppApprovalStatus @default(UNAPPROVED)
+  connectedUsers Int               @default(0)
+  riskScore      Int               @default(50)
+  authMethod     String            @default("SAML 2.0")
+  lastUsedAt     DateTime          @default(now())
+
+  organization   Organization      @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+}
+
+model AuditLog {
+  id             String        @id @default(cuid())
+  organizationId String
+  actorId        String
+  actorEmail     String
+  actorName      String
+  event          String
+  targetResource String
+  ipAddress      String
+  userAgent      String
+  severity       AuditSeverity @default(INFO)
+  metadata       Json?
+  createdAt      DateTime      @default(now())
+
+  organization   Organization  @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([event])
+  @@index([createdAt])
+}
