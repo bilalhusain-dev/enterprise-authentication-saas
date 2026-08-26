@@ -471,15 +471,15 @@ export default function EnterpriseAuthApp() {
           </div>
         </div>
 
-        {/* Sidebar Footer: SOC2 Compliance & Self-Hosted Status */}
-        <div className="p-3 border-t border-[#1C2541] bg-[#070D1F]">
-          <div className="flex items-center justify-between text-[11px] text-slate-400 px-1 py-1">
+        {/* Sidebar Footer: SOC2 Compliance & Open-Source Status */}
+        <div className="p-3.5 border-t border-[#1C2541] bg-[#070D1F]/80">
+          <div className="flex items-center justify-between text-[11px] text-slate-400 px-1">
             <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span className="font-mono text-slate-300 font-semibold">SOC2 Type II</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span className="font-medium text-slate-300">SOC2 Type II</span>
             </div>
-            <span className="font-mono text-[10px] text-slate-400 font-bold bg-[#141E3C] px-1.5 py-0.5 rounded border border-[#23315D]">
-              Self-Hosted
+            <span className="text-[10px] text-blue-400 font-semibold bg-blue-500/10 px-2 py-0.5 rounded-full border border-blue-500/20">
+              Open-Source
             </span>
           </div>
         </div>
