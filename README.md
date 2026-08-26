@@ -18,7 +18,7 @@
 <br />
 
 <div align="center">
-  <img src="public/screenshots/dashboard-preview.png" alt="Enterprise Authentication SaaS Overview Dashboard" style="border-radius: 12px; border: 1px solid #30363d; box-shadow: 0 10px 30px rgba(0,0,0,0.5);" width="100%" />
+  <img src="./public/screenshots/enterprise-dashboard-showcase.png" alt="Enterprise Authentication SaaS Overview Dashboard" style="border-radius: 12px; border: 1px solid #30363d;" width="100%" />
 </div>
 
 </div>
