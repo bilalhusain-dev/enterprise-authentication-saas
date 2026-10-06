@@ -2,6 +2,7 @@
 
 <div align="center">
 
+[![CI / Quality Gate](https://github.com/bilalhusain-dev/enterprise-authentication-saas/actions/workflows/ci.yml/badge.svg)](https://github.com/bilalhusain-dev/enterprise-authentication-saas/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 [![Next.js 15](https://img.shields.io/badge/Next.js-15.0_App_Router-black.svg?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![TypeScript Strict](https://img.shields.io/badge/TypeScript-5.0_Strict-3178C6.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
@@ -9,6 +10,7 @@
 [![Prisma ORM](https://img.shields.io/badge/Prisma-PostgreSQL_16-2D3748.svg?style=for-the-badge&logo=prisma)](https://www.prisma.io/)
 [![SOC2 Type II](https://img.shields.io/badge/Compliance-SOC2_Type_II-emerald.svg?style=for-the-badge)](docs/07_SECURITY_AND_COMPLIANCE.md)
 [![FIDO2 Passkeys](https://img.shields.io/badge/Auth-WebAuthn_Passkeys-blueviolet.svg?style=for-the-badge)](https://webauthn.io/)
+[![Vibe Coding Standard](https://img.shields.io/badge/SDLC-18--Stage_Production_Vibe_Framework-success?style=for-the-badge)](#-18-stage-production-engineering-lifecycle)
 
 **Production-grade, open-source, multi-tenant Identity & Access Management (IAM) engine for modern B2B SaaS.**  
 *Engineered as a high-performance open-source alternative to WorkOS, Auth0, and Clerk with zero per-user licensing fees.*
@@ -237,6 +239,36 @@ await api.webhooks.testPing('org_01H9A_ACME');
 | [`05_API_CONTRACTS.md`](docs/05_API_CONTRACTS.md) | **API Contracts & Zod Specs** | Type-safe REST request/response validation contracts. |
 | [`06_CODING_HANDOVER.md`](docs/06_CODING_HANDOVER.md) | **Developer & AI Project GPS** | Zero-token direct file path and symbol mapping index. |
 | [`07_SECURITY_AND_COMPLIANCE.md`](docs/07_SECURITY_AND_COMPLIANCE.md) | **Security & Cryptography Specs** | NIST 800-63B, OWASP ASVS Level 2, and SOC2 controls. |
+| [`08_TASK_BREAKDOWN_AND_ROADMAP.md`](docs/08_TASK_BREAKDOWN_AND_ROADMAP.md) | **Task Breakdown & Roadmap** | Granular Phase 1 to Phase 5 delivery timeline & Gantt chart. |
+| [`09_TESTING_AND_QA_PLAN.md`](docs/09_TESTING_AND_QA_PLAN.md) | **Testing & QA Quality Plan** | Automated test pyramid, API contracts, and smoke validation. |
+| [`10_DEPLOYMENT_AND_MONITORING.md`](docs/10_DEPLOYMENT_AND_MONITORING.md) | **Deployment & Observability** | Preview environments, Docker compose, and telemetry streams. |
+
+---
+
+## 🏗️ 18-Stage Production Engineering Lifecycle
+
+This repository strictly adheres to the **18-Step Vibe Coding & Production SDLC Standard**:
+
+| # | Stage | Repository Implementation / File Link |
+| :---: | :--- | :--- |
+| **1** | **IDEA** | [docs/01_BRD_AND_PRD.md](docs/01_BRD_AND_PRD.md) — Open source enterprise IAM problem statement |
+| **2** | **RESEARCH** | [docs/01_BRD_AND_PRD.md#competitive-analysis](docs/01_BRD_AND_PRD.md) — WorkOS, Auth0, Clerk market analysis |
+| **3** | **DEFINE THE USER** | [docs/01_BRD_AND_PRD.md#target-user-personas](docs/01_BRD_AND_PRD.md) — B2B SaaS Founders, CTOs, Security Leads |
+| **4** | **PRD** | [docs/01_BRD_AND_PRD.md](docs/01_BRD_AND_PRD.md) — Complete functional & non-functional requirements |
+| **5** | **CHOOSE TECH STACK** | [docs/03_SYSTEM_ARCHITECTURE.md#tech-stack-decision-matrix](docs/03_SYSTEM_ARCHITECTURE.md) — Next.js 15, TS Strict, PostgreSQL 16 |
+| **6** | **ARCHITECTURE** | [docs/03_SYSTEM_ARCHITECTURE.md](docs/03_SYSTEM_ARCHITECTURE.md) & [docs/04_DATABASE_SCHEMA.md](docs/04_DATABASE_SCHEMA.md) |
+| **7** | **DESIGN** | [docs/02_UI_UX_SPECIFICATION.md](docs/02_UI_UX_SPECIFICATION.md) — Enterprise UI matrix & design tokens |
+| **8** | **PROJECT RULES** | [.cursorrules](.cursorrules) & [AGENTS.md](AGENTS.md) — Strict AI coding guardrails & domain boundaries |
+| **9** | **TASK BREAKDOWN** | [docs/08_TASK_BREAKDOWN_AND_ROADMAP.md](docs/08_TASK_BREAKDOWN_AND_ROADMAP.md) — Phase 1–5 Gantt delivery matrix |
+| **10**| **SETUP** | [docker-compose.yml](docker-compose.yml), [.env.example](.env.example), [package.json](package.json) |
+| **11**| **DEVELOPMENT** | [`src/features/`](src/features/) — 15 isolated, domain-driven micro-modules |
+| **12**| **TESTING** | [`scripts/smoke-test.mjs`](scripts/smoke-test.mjs) & [`scripts/test-api.mjs`](scripts/test-api.mjs) |
+| **13**| **SECURITY REVIEW** | [docs/07_SECURITY_AND_COMPLIANCE.md](docs/07_SECURITY_AND_COMPLIANCE.md) — OWASP Top 10 mitigation & RS256 audit |
+| **14**| **CODE REVIEW** | [eslint.config.mjs](eslint.config.mjs), [tsconfig.json](tsconfig.json) static analysis |
+| **15**| **PREVIEW DEPLOYMENT** | [docs/10_DEPLOYMENT_AND_MONITORING.md#1-preview-deployment-workflow](docs/10_DEPLOYMENT_AND_MONITORING.md) — Vercel preview environments |
+| **16**| **QA TESTING** | [docs/09_TESTING_AND_QA_PLAN.md](docs/09_TESTING_AND_QA_PLAN.md) — End-to-end vector validation |
+| **17**| **PRODUCTION DEPLOY** | [docs/10_DEPLOYMENT_AND_MONITORING.md#2-production-deployment](docs/10_DEPLOYMENT_AND_MONITORING.md) & [.github/workflows/ci.yml](.github/workflows/ci.yml) |
+| **18**| **MONITORING** | [docs/10_DEPLOYMENT_AND_MONITORING.md#3-observability--monitoring](docs/10_DEPLOYMENT_AND_MONITORING.md) — Health check `/api/v1/health` & audit logging |
 
 ---
 
