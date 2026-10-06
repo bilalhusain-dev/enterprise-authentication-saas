@@ -26,7 +26,7 @@ async function fetchUrlMetadata(url: string) {
             description: descMatch ? descMatch[1] : '',
             image: imgMatch ? imgMatch[1] : null,
         };
-    } catch (e) {
+    } catch {
         return null;
     }
 }

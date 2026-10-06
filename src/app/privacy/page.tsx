@@ -62,7 +62,7 @@ export default function PrivacyPage() {
               Information We Collect
             </h2>
             <p className="mb-4">
-              Enterprise Authentication SaaS ("EA SaaS", "we", "our") acts as an enterprise Identity Provider (IdP) and authentication platform. We collect only the information necessary to provide zero-trust identity verification, multi-factor authentication, and compliance auditing.
+              Enterprise Authentication SaaS (&quot;EA SaaS&quot;, &quot;we&quot;, &quot;our&quot;) acts as an enterprise Identity Provider (IdP) and authentication platform. We collect only the information necessary to provide zero-trust identity verification, multi-factor authentication, and compliance auditing.
             </p>
             <ul className="space-y-2 list-disc list-inside text-slate-600">
               <li><strong className="text-slate-800">Identity Data:</strong> Full name, corporate email address, hashed credentials, and role memberships.</li>

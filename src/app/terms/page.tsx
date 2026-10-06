@@ -62,7 +62,7 @@ export default function TermsPage() {
               Agreement & Scope of Services
             </h2>
             <p className="mb-3">
-              By accessing or using the Enterprise Authentication SaaS platform, API endpoints, or SDKs, you ("Customer", "Organization") agree to be bound by these Terms of Service. If you are entering into this agreement on behalf of a company or legal entity, you represent that you have the authority to bind such entity.
+              By accessing or using the Enterprise Authentication SaaS platform, API endpoints, or SDKs, you (&quot;Customer&quot;, &quot;Organization&quot;) agree to be bound by these Terms of Service. If you are entering into this agreement on behalf of a company or legal entity, you represent that you have the authority to bind such entity.
             </p>
             <p className="text-slate-600">
               EA SaaS provides enterprise identity infrastructure, including SAML Single Sign-On, SCIM 2.0 Directory Sync, WebAuthn Passkeys, TOTP Multi-Factor Authentication, Role-Based Access Control (RBAC), and Compliance Audit Logging.

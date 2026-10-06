@@ -6,7 +6,7 @@ import { toPng } from "html-to-image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Wand2, Download, AlertCircle, Loader2, Layers } from "lucide-react";
+import { Download, AlertCircle, Loader2, Layers } from "lucide-react";
 import PostCanvas from "@/components/PostCanvas/PostCanvas";
 import { cn } from "@/lib/utils";
 
@@ -16,7 +16,7 @@ export default function BulkGeneratePage() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [progress, setProgress] = useState(0);
     const [error, setError] = useState<string | null>(null);
-    const [highlightTextColor, setHighlightTextColor] = useState("#000000");
+    const [_highlightTextColor, _setHighlightTextColor] = useState("#000000");
     const [gradientOpacity, setGradientOpacity] = useState<number>(100);
     const [gradientHeight, setGradientHeight] = useState<number>(60);
     const [globalBadgePosition, setGlobalBadgePosition] = useState<"left" | "center" | "right" | "none">("left");

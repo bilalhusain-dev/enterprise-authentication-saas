@@ -9,7 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DbRepository } from '@/lib/db/repository';
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   try {
     const users = await DbRepository.listMembers('org_01H9A_ACME');
 
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
       twoFactorEnabled: false
     });
 
-    const member = await DbRepository.addMember('org_01H9A_ACME', newUser.id, 'member');
+    await DbRepository.addMember('org_01H9A_ACME', newUser.id, 'member');
 
     await DbRepository.createAuditLog({
       organizationId: 'org_01H9A_ACME',

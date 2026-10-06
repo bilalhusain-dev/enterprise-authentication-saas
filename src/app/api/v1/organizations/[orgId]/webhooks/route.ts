@@ -23,7 +23,7 @@ export async function POST(req: NextRequest, { params }: RouteContext) {
   try {
     const { orgId } = await params;
     const body = await req.json();
-    const { action, url, events = ['user.created'], endpointId } = body;
+    const { action, url, events = ['user.created'] } = body;
 
     // Test ping action
     if (action === 'test_ping') {
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest, { params }: RouteContext) {
 // DELETE: Remove webhook
 export async function DELETE(req: NextRequest, { params }: RouteContext) {
   try {
-    const { orgId } = await params;
+    await params;
     const { searchParams } = new URL(req.url);
     const whId = searchParams.get('whId');
 

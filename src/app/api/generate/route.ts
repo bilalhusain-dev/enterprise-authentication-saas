@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { topic, niche, tone, urgency, mode, provider, openaiKey, geminiKey } = body;
+        const { topic, niche, tone, urgency, mode: _mode, provider, openaiKey, geminiKey } = body;
 
         const activeProvider = provider || 'openai';
 
@@ -61,7 +62,6 @@ If mode is "auto", generate 3 distinct angles. Otherwise, generate 1 angle.`;
                 return NextResponse.json({ error: 'Gemini API Key is required. Please set it in Settings.' }, { status: 401 });
             }
 
-            const { GoogleGenerativeAI } = require('@google/generative-ai');
             const genAI = new GoogleGenerativeAI(key);
 
             try {
