@@ -22,7 +22,7 @@ export interface User {
   totpSecret?: string;
   backupCodes?: string[];
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
 }
 
 export interface Organization {

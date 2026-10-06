@@ -8,6 +8,7 @@ export interface User {
   isEmailVerified: boolean;
   twoFactorEnabled: boolean;
   createdAt: string;
+  updatedAt?: string;
 }
 
 export interface Organization {

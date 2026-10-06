@@ -173,7 +173,14 @@ class InMemoryDatabase {
       // Members
       if (dataset.members) {
         dataset.members.forEach(member => {
-          this.members.set(member.id, { ...member, organizationId: orgId });
+          this.members.set(member.id, {
+            ...member,
+            organizationId: orgId,
+            user: {
+              ...member.user,
+              updatedAt: member.user.updatedAt || member.user.createdAt
+            }
+          });
         });
       }
 
